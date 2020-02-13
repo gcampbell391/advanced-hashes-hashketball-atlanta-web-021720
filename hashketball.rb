@@ -358,7 +358,7 @@ def winning_team
       return game_hash[:away][:team_name]
     end 
 end 
-
+#Returns the player with the longest name 
 def player_with_longest_name
   longest_name = ""
   name_length = 0  
@@ -388,14 +388,15 @@ def player_with_longest_name
   #Return player's name that is the longest 
   return longest_name
 end 
-  
+
+#Determines if the player with the longest name also has the most #steals 
 def long_name_steals_a_ton?
   steals_most_name = ""
   player_steals = 0
   most_steals = 0
   home_counter = 0 
   away_counter = 0 
-  #Checks to see if the longest name belongs to the away team
+  #Checks to see if the most steals belongs to an away player
   while away_counter < game_hash[:away][:players].length do
     player_steals = game_hash[:away][:players][away_counter][:steals]
     if player_steals > most_steals
@@ -405,7 +406,7 @@ def long_name_steals_a_ton?
     end 
     away_counter += 1
   end 
-  #Checks to see if the longest name belongs to the home team 
+  #Checks to see if the most steals belongs to a home player
     while home_counter < game_hash[:home][:players].length do
       player_steals = game_hash[:home][:players][home_counter][:steals]
       if player_steals > most_steals
@@ -415,6 +416,8 @@ def long_name_steals_a_ton?
       end 
     home_counter += 1
   end 
+  #Returns true if the player with the most steals also has the 
+  # longest name 
   if steals_most_name == player_with_longest_name
     return true 
   end 
